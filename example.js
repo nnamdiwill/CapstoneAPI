@@ -1,24 +1,22 @@
-/*Step 1 : Get Input from the User */
-
 $(document).ready(function () {
-    "use strict"; //used to make code correct
-    $('.user-input').on('click', function (event) {
+
+    // STEP 1 - get the input from the user
+    "use strict";
+    $('#search-terms').on('click', function (event) {
         event.preventDefault();
-        var item = $('.input-search').val();
+        var item = $('#all-items').val();
         searchValidate(item);
 
     });
 });
 
-
-/*Step 2 : Connect to API based on User Input */
 //add Validation(item);
 
 var searchValidate = function (item) {
     "use strict";
     if (item == '') {
         //alert('please enter an item in the text box!');
-        $('.results ul').html('');
+        $('.item-details').html('');
         return false;
     } else {
         getItem(item);
@@ -42,12 +40,9 @@ var getItem = function (item) {
         //type: 'GET'
     })
 
-
-    /* Step 3: Show results based on API Output */
-
     .done(function (result) {
         console.log(result);
-        $('.results ul').html('');
+        $('.item-details').html('');
         var itemResults = "";
 
         $.each(result.results, function (i, item) {
@@ -64,12 +59,13 @@ var getItem = function (item) {
 
         });
 
-        $('.results ul').append(itemResults);
+        $('.item-details').append(itemResults);
     })
 
     .fail(function (error, errorThrown) {
         var errorElem = showError(error);
-        $('.results').append(errorElem);
+        $('.search-results').append(errorElem);
     });
 
 }
+Contact GitHub API Training Shop Blog About© 2016 GitHub, Inc.Terms P
